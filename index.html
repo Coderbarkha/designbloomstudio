@@ -1,169 +1,248 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sticky Responsive Header</title>
-  <style>
-    :root{
-      --bg: #1f2937; /* header background color requested */
-      --accent: #f9fafb;
-      --max-width: 1100px;
-    }
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sticky Responsive Header</title>
+    <style>
+      :root {
+        --bg: #1f2937; /* header background color requested */
+        --accent: #f9fafb;
+        --max-width: 1100px;
+      }
 
-    /* Basic reset */
-    *{box-sizing: border-box;margin:0;padding:0}
-    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;color:var(--accent);background:#fff}
+      /* Basic reset */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: system-ui, -apple-system, Segoe UI, Roboto,
+          "Helvetica Neue", Arial;
+        color: var(--accent);
+        background: #fff;
+      }
 
-    /* Header container */
-    .site-header{
-      position:sticky;top:0;z-index:1000;
-      background:var(--bg);
-      color:var(--accent);
-      width:100%;
-      box-shadow:0 2px 6px rgba(0,0,0,0.15);
-    }
+      /* Header container */
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: var(--bg);
+        color: var(--accent);
+        width: 100%;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+      }
 
-    .container{
-      max-width:var(--max-width);
-      margin:0 auto;
-      padding:10px 20px;
-      display:flex;align-items:center;justify-content:space-between;
-    }
+      .container {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 10px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
 
-    /* Logo area - give left spacing as requested */
-    .logo{
-      display:flex;align-items:center;gap:12px;
-    }
+      /* Logo area - give left spacing as requested */
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
 
-    .logo img{
-      display:block;height:40px;width:auto;border-radius:6px;object-fit:cover;
-    }
+      .logo img {
+        display: block;
+        height: 40px;
+        width: 40px;
+        border-radius: 32px;
+        object-fit: cover;
+      }
 
-    .brand{
-      font-weight:700;font-size:18px;letter-spacing:0.2px;
-    }
+      .brand {
+        font-weight: 700;
+        font-size: 18px;
+        letter-spacing: 0.2px;
+      }
 
-    /* Desktop nav */
-    nav.desktop-nav{
-      display:flex;gap:22px;align-items:center;
-    }
+      /* Desktop nav */
+      nav.desktop-nav {
+        display: flex;
+        gap: 22px;
+        align-items: center;
+      }
 
-    nav.desktop-nav a{
-      color:var(--accent);text-decoration:none;padding:8px 6px;border-radius:6px;font-weight:600;font-size:15px;
-    }
+      nav.desktop-nav a {
+        color: var(--accent);
+        text-decoration: none;
+        padding: 8px 6px;
+        border-radius: 6px;
+        font-weight: 600;
+        font-size: 15px;
+      }
 
-    nav.desktop-nav a:hover{background:rgba(255,255,255,0.04)}
+      nav.desktop-nav a:hover {
+        background: rgba(255, 255, 255, 0.04);
+      }
 
-    /* Hamburger for tablet & mobile */
-    .hamburger{
-      display:none;flex-direction:column;gap:4px;cursor:pointer;padding:8px;border-radius:8px;
-    }
-    .hamburger span{width:22px;height:2px;background:var(--accent);display:block;border-radius:2px}
+      /* Hamburger for tablet & mobile */
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 4px;
+        cursor: pointer;
+        padding: 8px;
+        border-radius: 8px;
+      }
+      .hamburger span {
+        width: 22px;
+        height: 2px;
+        background: var(--bg);
+        display: block;
+        border-radius: 2px;
+      }
 
-    /* Mobile menu (hidden by default) */
-    .mobile-menu{
-      display:none;background:var(--bg);border-top:1px solid rgba(255,255,255,0.04);
-    }
+      /* Mobile menu (hidden by default) */
+      .mobile-menu {
+        display: none;
+        background: var(--bg);
+        border-top: 1px solid rgba(255, 255, 255, 0.04);
+      }
 
-    .mobile-menu a{
-      display:block;padding:12px 20px;color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.02);font-weight:600
-    }
+      .mobile-menu a {
+        display: block;
+        padding: 12px 20px;
+        color: var(--accent);
+        text-decoration: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+        font-weight: 600;
+      }
 
-    .mobile-menu a:hover{background:rgba(255,255,255,0.03)}
+      .mobile-menu a:hover {
+        background: rgba(255, 255, 255, 0.03);
+      }
 
-    /* Responsive breakpoints */
-    @media (max-width: 900px){
-      .container{padding:10px 16px}
-      nav.desktop-nav{display:none}
-      .hamburger{display:flex}
-    }
+      /* Responsive breakpoints */
+      @media (max-width: 900px) {
+        .container {
+          padding: 10px 16px;
+        }
+        nav.desktop-nav {
+          display: none;
+        }
+        .hamburger {
+          display: flex;
+        }
+      }
 
-    @media (max-width: 480px){
-      .logo img{height:34px}
-      .brand{font-size:16px}
-    }
-  </style>
-</head>
-<body>
+      @media (max-width: 480px) {
+        .logo img {
+          height: 34px;
+        }
+        .brand {
+          font-size: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Sticky header -->
+    <header class="site-header" role="banner">
+      <div class="container">
+        <!-- Left: logo + brand -->
+        <div class="logo">
+          <!-- Replace the src with your logo file inside your images/ folder -->
+          <img src="images/logo.png" alt="Design Bloom Stduio logo" />
+        </div>
 
-  <!-- Sticky header -->
-  <header class="site-header" role="banner">
-    <div class="container">
-      <!-- Left: logo + brand -->
-      <div class="logo">
-        <!-- Replace the src with your logo file inside your images/ folder -->
-        <img src=\"../images/logo.png\" alt="Your logo" />
-        <div class="brand">Your Name / Brand</div>
+        <!-- Right: desktop nav -->
+        <nav class="desktop-nav" role="navigation" aria-label="Primary">
+          <a href="#home">Home</a>
+          <a href="#about">About Us</a>
+          <a href="#services">Services</a>
+          <a href="#portfolio">Portfolio</a>
+          <a href="#blogs">Blogs</a>
+          <a href="#contact">Contact Us</a>
+        </nav>
+
+        <!-- Hamburger (shows on tablet & mobile) -->
+        <button
+          class="hamburger"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          aria-label="Toggle menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
 
-      <!-- Right: desktop nav -->
-      <nav class="desktop-nav" role="navigation" aria-label="Primary">
+      <!-- Mobile menu (collapsible) -->
+      <div id="mobile-menu" class="mobile-menu" role="menu" aria-hidden="true">
         <a href="#home">Home</a>
         <a href="#about">About Us</a>
         <a href="#services">Services</a>
         <a href="#portfolio">Portfolio</a>
         <a href="#blogs">Blogs</a>
         <a href="#contact">Contact Us</a>
-      </nav>
+      </div>
+    </header>
 
-      <!-- Hamburger (shows on tablet & mobile) -->
-      <button class="hamburger" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </div>
+    <!-- Example content to show sticky behaviour -->
+    <main style="padding: 28px; max-width: var(--max-width); margin: 0 auto">
+      <h1 style="color: #111; margin-bottom: 12px">Demo content</h1>
+      <p style="color: #333; line-height: 1.6">
+        Yahan aap apna content add kar sakte ho. Scroll karo aur header sticky
+        rahega upar.
+      </p>
 
-    <!-- Mobile menu (collapsible) -->
-    <div id="mobile-menu" class="mobile-menu" role="menu" aria-hidden="true">
-      <a href="#home">Home</a>
-      <a href="#about">About Us</a>
-      <a href="#services">Services</a>
-      <a href="#portfolio">Portfolio</a>
-      <a href="#blogs">Blogs</a>
-      <a href="#contact">Contact Us</a>
-    </div>
-  </header>
+      <div
+        style="
+          height: 1200px;
+          background: linear-gradient(#fff, #f3f4f6);
+          margin-top: 20px;
+          border-radius: 8px;
+          padding: 20px;
+        "
+      >
+        Long content placeholder
+      </div>
+    </main>
 
-  <!-- Example content to show sticky behaviour -->
-  <main style="padding:28px;max-width:var(--max-width);margin:0 auto">
-    <h1 style="color:#111;margin-bottom:12px">Demo content</h1>
-    <p style="color:#333;line-height:1.6">Yahan aap apna content add kar sakte ho. Scroll karo aur header sticky rahega upar.</p>
+    <script>
+      // Mobile menu toggle script
+      (function () {
+        const btn = document.querySelector(".hamburger");
+        const mobile = document.getElementById("mobile-menu");
 
-    <div style="height:1200px;background:linear-gradient(#fff,#f3f4f6);margin-top:20px;border-radius:8px;padding:20px">Long content placeholder</div>
-  </main>
+        function openMenu() {
+          btn.setAttribute("aria-expanded", "true");
+          mobile.style.display = "block";
+          mobile.setAttribute("aria-hidden", "false");
+        }
+        function closeMenu() {
+          btn.setAttribute("aria-expanded", "false");
+          mobile.style.display = "none";
+          mobile.setAttribute("aria-hidden", "true");
+        }
 
-  <script>
-    // Mobile menu toggle script
-    (function(){
-      const btn = document.querySelector('.hamburger');
-      const mobile = document.getElementById('mobile-menu');
+        btn.addEventListener("click", () => {
+          const expanded = btn.getAttribute("aria-expanded") === "true";
+          if (expanded) closeMenu();
+          else openMenu();
+        });
 
-      function openMenu(){
-        btn.setAttribute('aria-expanded','true');
-        mobile.style.display = 'block';
-        mobile.setAttribute('aria-hidden','false');
-      }
-      function closeMenu(){
-        btn.setAttribute('aria-expanded','false');
-        mobile.style.display = 'none';
-        mobile.setAttribute('aria-hidden','true');
-      }
+        // Close mobile menu when a link is clicked (good UX)
+        mobile
+          .querySelectorAll("a")
+          .forEach((a) => a.addEventListener("click", () => closeMenu()));
 
-      btn.addEventListener('click',()=>{
-        const expanded = btn.getAttribute('aria-expanded') === 'true';
-        if(expanded) closeMenu(); else openMenu();
-      });
-
-      // Close mobile menu when a link is clicked (good UX)
-      mobile.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>closeMenu()));
-
-      // Optional: close menu on resize if desktop breakpoint reached
-      window.addEventListener('resize',()=>{
-        if(window.innerWidth > 900) closeMenu();
-      });
-    })();
-  </script>
-</body>
+        // Optional: close menu on resize if desktop breakpoint reached
+        window.addEventListener("resize", () => {
+          if (window.innerWidth > 900) closeMenu();
+        });
+      })();
+    </script>
+  </body>
 </html>
