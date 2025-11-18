@@ -2,245 +2,335 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Sticky Responsive Header</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Design Bloom Studio</title>
     <style>
-      :root {
-        --bg: #1f2937; /* header background color requested */
-        --accent: #f9fafb;
-        --max-width: 1100px;
-      }
-
-      /* Basic reset */
       * {
         box-sizing: border-box;
         margin: 0;
         padding: 0;
       }
+      :root {
+        --purple-600: #7f00ff;
+        --purple-400: #c59afd;
+        --muted-white: rgba(255, 255, 255, 0.78);
+        --bg-panel: linear-gradient(
+          180deg,
+          rgba(15, 6, 30, 0.95),
+          rgba(6, 3, 12, 0.92)
+        );
+        --shadow: 0 30px 80px rgba(3, 2, 6, 0.7);
+      }
       body {
-        font-family: system-ui, -apple-system, Segoe UI, Roboto,
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto,
           "Helvetica Neue", Arial;
-        color: var(--accent);
+        color: #111;
         background: #fff;
       }
 
-      /* Header container */
-      .site-header {
+      /* Navbar */
+      .navbar {
         position: sticky;
-        top: 0;
-        z-index: 1000;
-        background: var(--bg);
-        color: var(--accent);
-        width: 100%;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        top: 0px;
+        z-index: 60;
+        
       }
-
-      .container {
-        max-width: var(--max-width);
-        margin: 0 auto;
-        padding: 10px 20px;
+      .nav-inner {
         display: flex;
         align-items: center;
         justify-content: space-between;
+        gap: 18px;
+        padding: 14px 20px;
+        border-radius: 2px;
+        background: linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.02),
+            rgba(0, 0, 0, 0.12)
+          ),
+          linear-gradient(90deg, rgba(0, 0, 0, 0.15), rgba(8, 2, 15, 0.06));
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        box-shadow: 0 10px 30px rgba(15, 6, 30, 0.05),
+          0 0 60px rgba(127, 0, 255, 0.02);
       }
 
-      /* Logo area - give left spacing as requested */
-      .logo {
+      /* Brand / logo */
+      .brand {
         display: flex;
         align-items: center;
         gap: 12px;
       }
-
-      .logo img {
-        display: block;
-        height: 40px;
-        width: 40px;
-        border-radius: 32px;
-        object-fit: cover;
+      .logo {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: linear-gradient(
+          135deg,
+          var(--purple-400),
+          var(--purple-600) 70%
+        );
+        display: grid;
+        place-items: center;
+        color: #fff;
+        font-weight: 800;
+        box-shadow: 0 6px 20px rgba(127, 0, 255, 0.12);
       }
 
-      .brand {
-        font-weight: 700;
-        font-size: 18px;
-        letter-spacing: 0.2px;
-      }
-
-      /* Desktop nav */
-      nav.desktop-nav {
+      /* Desktop nav links */
+      .nav-links {
         display: flex;
-        gap: 22px;
         align-items: center;
-      }
-
-      nav.desktop-nav a {
-        color: var(--accent);
-        text-decoration: none;
-        padding: 8px 6px;
-        border-radius: 6px;
-        font-weight: 600;
+        gap: 18px;
         font-size: 15px;
       }
-
-      nav.desktop-nav a:hover {
-        background: rgba(255, 255, 255, 0.04);
-      }
-
-      /* Hamburger for tablet & mobile */
-      .hamburger {
-        display: none;
-        flex-direction: column;
-        gap: 4px;
-        cursor: pointer;
-        padding: 8px;
-        border-radius: 8px;
-      }
-      .hamburger span {
-        width: 22px;
-        height: 2px;
-        background: var(--bg);
-        display: block;
-        border-radius: 2px;
-      }
-
-      /* Mobile menu (hidden by default) */
-      .mobile-menu {
-        display: none;
-        background: var(--bg);
-        border-top: 1px solid rgba(255, 255, 255, 0.04);
-      }
-
-      .mobile-menu a {
-        display: block;
-        padding: 12px 20px;
-        color: var(--accent);
+      .nav-links a {
+        color: #000000;
         text-decoration: none;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.02);
-        font-weight: 600;
+        padding: 8px 10px;
+        border-radius: 8px;
+        font-weight: 500;
+        transition: all 0.18s ease;
+        position: relative;
+      }
+      .nav-links a:hover {
+        color: #000000;
+        transform: translateY(-2px);
+      }
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 6px;
+        width: 0;
+        height: 3px;
+        border-radius: 3px;
+        background: linear-gradient(90deg, #0c0c0c, #474747);
+        transition: width 0.2s ease;
+      }
+      .nav-links a:hover::after {
+        width: 60%;
       }
 
-      .mobile-menu a:hover {
-        background: rgba(255, 255, 255, 0.03);
+      .btn-getwork {
+        background: linear-gradient(90deg, var(--purple-600), #7c03fd);
+        color: #07040a;
+        padding: 9px 14px;
+        border-radius: 999px;
+        font-weight: 700;
+        box-shadow: 0 10px 30px rgba(127, 0, 255, 0.12);
+        text-decoration: none;
+      }
+      .btn-getwork:hover {
+        transform: translateY(-3px);
       }
 
-      /* Responsive breakpoints */
-      @media (max-width: 900px) {
-        .container {
-          padding: 10px 16px;
-        }
-        nav.desktop-nav {
-          display: none;
-        }
-        .hamburger {
+      /* Mobile toggle (hamburger) */
+      .nav-toggle {
+        display: none;
+        width: 44px;
+        height: 36px;
+        border-radius: 8px;
+        background: transparent;
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        align-items: center;
+        justify-content: center;
+        padding: 6px;
+        cursor: pointer;
+      }
+      .nav-toggle span {
+        display: block;
+        height: 2px;
+        width: 20px;
+        background: linear-gradient(
+          90deg,
+          var(--purple-400),
+          var(--purple-600)
+        );
+        margin: 3px 0;
+        border-radius: 2px;
+        transition: all 0.18s ease;
+      }
+      .nav-toggle.active {
+        border-color: rgba(127, 0, 255, 0.18);
+      }
+
+      /* Responsive: mobile / tablet */
+      @media (max-width: 880px) {
+        .nav-toggle {
           display: flex;
         }
+        .nav-links {
+          /* mobile panel styling: white background + purple text as requested */
+          position: fixed;
+          right: 16px;
+          top: 78px;
+          min-width: 220px;
+          max-width: 86%;
+          padding: 12px;
+          flex-direction: column;
+          gap: 8px;
+          background: #ffffff; /* WHITE background on mobile */
+          color: var(--purple-600);
+          border-radius: 12px;
+          border: 1px solid rgba(127, 0, 255, 0.08);
+          box-shadow: var(--shadow);
+          transform-origin: top right;
+          transform: translateY(-6px) scale(0.98);
+          opacity: 0;
+          pointer-events: none;
+          transition: all 0.22s cubic-bezier(0.2, 0.9, 0.2, 1);
+        }
+
+        .nav-links.open {
+          opacity: 1;
+          pointer-events: auto;
+          transform: translateY(0) scale(1);
+        }
+
+        /* Links: purple text, subtle hover bg */
+        .nav-links a {
+          color: var(--purple-600);
+          padding: 10px 12px;
+          width: 100%;
+          border-radius: 10px;
+          font-weight: 600;
+          background: transparent;
+          box-shadow: none;
+        }
+        .nav-links a:hover {
+          background: linear-gradient(
+            90deg,
+            rgba(127, 0, 255, 0.06),
+            rgba(197, 154, 253, 0.06)
+          );
+          color: var(--purple-600);
+        }
+
+        /* Make the Get Work link stand out on mobile: outline purple button */
+        .nav-links a.btn-getwork {
+          background: transparent;
+          border: 1px solid var(--purple-600);
+          color: var(--purple-600);
+          padding: 10px 12px;
+          text-align: center;
+        }
+
+        /* Slightly tighten header padding for small screens */
+        .nav-inner {
+          padding: 10px 12px;
+        }
       }
 
-      @media (max-width: 480px) {
-        .logo img {
-          height: 34px;
+      /* small tweaks for very small devices */
+      @media (max-width: 420px) {
+        .logo {
+          width: 40px;
+          height: 40px;
         }
-        .brand {
-          font-size: 16px;
+        .nav-toggle {
+          width: 40px;
+          height: 36px;
         }
       }
     </style>
   </head>
   <body>
-    <!-- Sticky header -->
-    <header class="site-header" role="banner">
-      <div class="container">
-        <!-- Left: logo + brand -->
-        <div class="logo">
-          <!-- Replace the src with your logo file inside your images/ folder -->
-          <img src="images/logo.png" alt="Design Bloom Stduio logo" />
+    <header class="navbar">
+      <div class="nav-inner container" role="navigation" aria-label="Primary">
+        <div class="brand">
+          <!-- Adjust path if your logo is at different level -->
+          <img
+            src="images/logo.png"
+            class="logo"
+            alt="Design Bloom Studio logo"
+          />
         </div>
 
-        <!-- Right: desktop nav -->
-        <nav class="desktop-nav" role="navigation" aria-label="Primary">
-          <a href="#home">Home</a>
-          <a href="#about">About Us</a>
-          <a href="#services">Services</a>
-          <a href="#portfolio">Portfolio</a>
-          <a href="#blogs">Blogs</a>
-          <a href="#contact">Contact Us</a>
-        </nav>
-
-        <!-- Hamburger (shows on tablet & mobile) -->
         <button
-          class="hamburger"
+          id="navToggle"
+          class="nav-toggle"
+          aria-controls="navMenu"
           aria-expanded="false"
-          aria-controls="mobile-menu"
           aria-label="Toggle menu"
         >
-          <span></span>
-          <span></span>
-          <span></span>
+          <span></span><span></span><span></span>
         </button>
-      </div>
 
-      <!-- Mobile menu (collapsible) -->
-      <div id="mobile-menu" class="mobile-menu" role="menu" aria-hidden="true">
-        <a href="#home">Home</a>
-        <a href="#about">About Us</a>
-        <a href="#services">Services</a>
-        <a href="#portfolio">Portfolio</a>
-        <a href="#blogs">Blogs</a>
-        <a href="#contact">Contact Us</a>
+        <nav id="navMenu" class="nav-links" aria-hidden="true">
+          <a href="#home">Home</a>
+          <a href="#services">Services</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#projects">Projects</a>
+          <a href="#works">Works</a>
+          <a href="#contact" class="btn-getwork">Get Work</a>
+        </nav>
       </div>
     </header>
-
-    <!-- Example content to show sticky behaviour -->
-    <main style="padding: 28px; max-width: var(--max-width); margin: 0 auto">
-      <h1 style="color: #111; margin-bottom: 12px">Demo content</h1>
-      <p style="color: #333; line-height: 1.6">
-        Yahan aap apna content add kar sakte ho. Scroll karo aur header sticky
-        rahega upar.
-      </p>
-
-      <div
-        style="
-          height: 1200px;
-          background: linear-gradient(#fff, #f3f4f6);
-          margin-top: 20px;
-          border-radius: 8px;
-          padding: 20px;
-        "
-      >
-        Long content placeholder
-      </div>
-    </main>
-
     <script>
-      // Mobile menu toggle script
       (function () {
-        const btn = document.querySelector(".hamburger");
-        const mobile = document.getElementById("mobile-menu");
+        const btn = document.getElementById("navToggle");
+        const menu = document.getElementById("navMenu");
 
         function openMenu() {
+          menu.classList.add("open");
+          btn.classList.add("active");
           btn.setAttribute("aria-expanded", "true");
-          mobile.style.display = "block";
-          mobile.setAttribute("aria-hidden", "false");
+          menu.setAttribute("aria-hidden", "false");
+          // hamburger to X
+          btn.querySelectorAll("span")[0].style.transform =
+            "translateY(6px) rotate(45deg)";
+          btn.querySelectorAll("span")[1].style.opacity = "0";
+          btn.querySelectorAll("span")[2].style.transform =
+            "translateY(-6px) rotate(-45deg)";
         }
         function closeMenu() {
+          menu.classList.remove("open");
+          btn.classList.remove("active");
           btn.setAttribute("aria-expanded", "false");
-          mobile.style.display = "none";
-          mobile.setAttribute("aria-hidden", "true");
+          menu.setAttribute("aria-hidden", "true");
+          btn.querySelectorAll("span")[0].style.transform = "";
+          btn.querySelectorAll("span")[1].style.opacity = "";
+          btn.querySelectorAll("span")[2].style.transform = "";
         }
 
-        btn.addEventListener("click", () => {
-          const expanded = btn.getAttribute("aria-expanded") === "true";
-          if (expanded) closeMenu();
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          if (menu.classList.contains("open")) closeMenu();
           else openMenu();
         });
 
-        // Close mobile menu when a link is clicked (good UX)
-        mobile
-          .querySelectorAll("a")
-          .forEach((a) => a.addEventListener("click", () => closeMenu()));
+        // close when clicking a menu link
+        menu.querySelectorAll("a").forEach((a) =>
+          a.addEventListener("click", () => {
+            if (menu.classList.contains("open")) closeMenu();
+          })
+        );
 
-        // Optional: close menu on resize if desktop breakpoint reached
+        // close when clicking outside the menu (mobile)
+        document.addEventListener("click", (ev) => {
+          const isSmall = window.matchMedia("(max-width:880px)").matches;
+          if (!isSmall) return;
+          if (!menu.contains(ev.target) && !btn.contains(ev.target))
+            closeMenu();
+        });
+
+        // close on ESC
+        document.addEventListener("keydown", (ev) => {
+          if (ev.key === "Escape") closeMenu();
+        });
+
+        // ensure menu state resets on resize (so desktop shows inline links)
         window.addEventListener("resize", () => {
-          if (window.innerWidth > 900) closeMenu();
+          if (window.innerWidth > 880) {
+            menu.classList.remove("open");
+            btn.classList.remove("active");
+            menu.style.opacity = "";
+            btn.querySelectorAll("span")[0].style.transform = "";
+            btn.querySelectorAll("span")[1].style.opacity = "";
+            btn.querySelectorAll("span")[2].style.transform = "";
+            btn.setAttribute("aria-expanded", "false");
+            menu.setAttribute("aria-hidden", "true");
+          }
         });
       })();
     </script>
